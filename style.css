@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+* { /*universal selector and it applies to everything on the css file */
+    box-sizing: border-box; /* it is set to border box so that if extra padding or border is added to an element it will not affect the width */ 
+
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    display: flex; /* we want to center everything in the middle of the viewport*/
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /*This means take up the entire height of the browser*/
+    overflow: hidden; /* we don't want scroll bars to show up by default*/
+    margin: 0;
+   
+}
+
+.container {
+    display: flex;
+    width: 90vw; 
+}
+
+.panel {
+    background-size: cover; /* this preserves rounded corners on large screens */
+    background-position: center; 
+    background-repeat: no-repeat;
+    height: 80vh; /* makes the height not the entire viewport but to 80%*/
+    border-radius: 50px; 
+    color: #fff;
+    cursor: pointer; /* when we hover over the images, we get a cursor*/
+    flex: 0.5; /* they would be even to a certain point until we have an active class and they become different in sizes*/
+    margin: 10px; /* margin separates the cards and provides a space between each of them*/
+    position: relative; /* This is for the position of the texts in the cards*/
+    transition: flex 0.7s ease-in; /* When we make a card active, this makes it ease in and not just flicker in*/
+
+
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px; 
+    left: 20px;
+    margin: 0;
+    opacity: 0;/* Opacity makes the h3 invisible until they are active*/
+}
+
+.panel.active { /* If the panel div has an active class, change the flex from 0.5 which is the initial value to 5 to make it wider*/
+    flex: 5;
+}
+
+.panel.active h3 {
+    opacity: 1; /* Opacity is initially zero but it should become 1 when the panel is active*/
+    transition: opacity 0.3s ease-in 0.5s;/*Makes the text not show up until a card is fully active*/
+}
+
+
+@media (max-width: 480px){ /*All the styles contained here will only take effect if the screen is at 480px */
+    .container {
+        width: 100vw; /*Initially 90vw on a larger screen, but it should take up the entire width when on a small screen*/
+    }
+
+
+    /*These remove the last two panels (4 and 5) when the screen is smaller at 480 px*/
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5){
+        display: none;
+
+    }
+  
+}
+
